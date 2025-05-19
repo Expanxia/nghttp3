@@ -366,6 +366,18 @@ int nghttp3_stream_write_settings(nghttp3_stream *stream,
     ++fr.settings.niv;
   }
 
+  if (local_settings->h3_webtransport) {
+    iv[fr.settings.niv].id = NGHTTP3_SETTINGS_ID_H3_WEBTRANSPORT;
+    iv[fr.settings.niv].value = 1;
+
+    ++fr.settings.niv;
+
+    iv[fr.settings.niv].id = NGHTTP3_SETTINGS_ID_H3_WEBTRANSPORT_MAX_SESSIONS;
+    iv[fr.settings.niv].value = local_settings->h3_webtransport_max_sessions;
+
+    ++fr.settings.niv;
+  }
+
   len = nghttp3_frame_write_settings_len(&fr.settings.hd.length, &fr.settings);
 
   rv = nghttp3_stream_ensure_chunk(stream, len);

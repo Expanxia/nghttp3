@@ -1652,6 +1652,17 @@ typedef struct nghttp3_settings {
    * Datagrams (see :rfc:`9297`).
    */
   uint8_t h3_datagram;
+  /**
+   * :member:`h3_webtransport`, if set to nonzero, enables WebTransport
+   * WebTransport over HTTP/3 (see draft-ietf-webtrans-http3-06).
+   */
+  uint8_t h3_webtransport;
+  /**
+   * :member:`h3_webtransport_max_sessions`, is the maximum webtransport
+   * sessions
+   * WebTransport over HTTP/3 (see draft-ietf-webtrans-http3-06).
+   */
+  uint64_t h3_webtransport_max_sessions;
 } nghttp3_settings;
 
 /**

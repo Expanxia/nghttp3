@@ -1734,6 +1734,20 @@ int nghttp3_conn_on_settings_entry_received(nghttp3_conn *conn,
 
     dest->h3_datagram = (uint8_t)ent->value;
     break;
+  case NGHTTP3_SETTINGS_ID_H3_WEBTRANSPORT:
+    switch (ent->value) {
+    case 0:
+    case 1:
+      break;
+    default:
+      return NGHTTP3_ERR_H3_SETTINGS_ERROR;
+    }
+
+    dest->h3_webtransport = (uint8_t)ent->value;
+    break;
+  case NGHTTP3_SETTINGS_ID_H3_WEBTRANSPORT_MAX_SESSIONS:
+    dest->h3_webtransport_max_sessions = ent->value;
+    break;
   case NGHTTP3_H2_SETTINGS_ID_ENABLE_PUSH:
   case NGHTTP3_H2_SETTINGS_ID_MAX_CONCURRENT_STREAMS:
   case NGHTTP3_H2_SETTINGS_ID_INITIAL_WINDOW_SIZE:
